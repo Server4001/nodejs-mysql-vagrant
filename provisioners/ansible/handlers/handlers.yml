@@ -1,0 +1,10 @@
+---
+- name: Reload Nginx
+  service:
+    name: nginx
+    state: reloaded
+
+- name: Reload Supervisord
+  service:
+    name: supervisord
+    state: reloaded

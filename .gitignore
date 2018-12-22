@@ -1,0 +1,4 @@
+/.vagrant
+/.idea
+/provisioners/ansible/*.retry
+/app/node_modules

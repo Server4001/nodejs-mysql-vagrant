@@ -1,0 +1,30 @@
+# {{ ansible_managed }}
+upstream proxy_nodejs {
+    server 127.0.0.1:{{ nodejs_express_port }};
+    keepalive 8;
+}
+
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server ipv6only=on;
+    server_name {{ hostvars['default']['vm_hostname'] }} localhost;
+
+    client_max_body_size 16M;
+
+    access_log {{ application_log_dir }}/nodejs-express-nginx-access.log main;
+    error_log {{ application_log_dir }}/nodejs-express-nginx-error.log;
+
+    location / {
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $host;
+        proxy_set_header X-NginX-Proxy true;
+
+        proxy_pass http://proxy_nodejs;
+        proxy_redirect off;
+
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+}

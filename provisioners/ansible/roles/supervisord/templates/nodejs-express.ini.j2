@@ -1,0 +1,14 @@
+; {{ ansible_managed }}
+
+[program:express]
+command=/usr/bin/node /var/www/html/index.js
+directory=/var/www/html
+autostart=true
+autorestart=true
+startsecs=5
+startretries=3
+redirect_stderr=true
+stdout_logfile={{ application_log_dir }}/nodejs-express-supervisord.log
+stdout_logfile_maxbytes=25MB
+stdout_logfile_backups=7
+user=nginx

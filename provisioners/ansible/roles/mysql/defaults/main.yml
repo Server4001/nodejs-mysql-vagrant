@@ -1,0 +1,7 @@
+---
+mysql_root_password: 'password'
+mysql_express_db_name: 'express'
+mysql_express_username: 'express'
+mysql_express_password: 'express123'
+mysql_readonly_username: 'readonly'
+mysql_readonly_password: 'readonly123'
