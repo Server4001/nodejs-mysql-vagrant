@@ -32,4 +32,4 @@
 
 ### Important URLs
 
-* RabbitMQ admin: `http://10.20.0.92:15672`
+* RabbitMQ admin: http://nodejs.mycompany.local:15672
